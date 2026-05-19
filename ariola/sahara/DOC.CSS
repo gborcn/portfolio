@@ -1,0 +1,39 @@
+body{
+    margin:0;
+    height:100vh;
+    font-family:Modern;
+    background-image: url("images/doc.ar.jpeg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.card{
+    padding:50px;
+    border-radius:20px;
+    text-align:center;
+    animation:forestGlow 3s infinite alternate;
+    border:3px solid #FFA500; /* warm orange border */
+    backdrop-filter: blur(5px);
+    background-color: rgba(0,0,0,0.4); /* subtle dark overlay to make text pop */
+}
+
+h2{
+    font-size:55px;
+    color:#FFD700; /* gold/yellow from the sunset */
+    letter-spacing:2px;
+}
+
+p{
+    font-size:30px;
+    color:#FFB347; /* lighter orange for paragraph text */
+    margin:10px 0;
+}
+
+span{
+    color:#FF4500; /* deep orange/red for emphasis */
+    font-weight:bold;
+}

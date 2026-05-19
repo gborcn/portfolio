@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ariola's INCREMENT</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Trebuchet MS", sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #000000, #0d1b2a);
+}
+
+/* Main Card */
+.container {
+    width: 340px;
+    padding: 25px;
+    text-align: center;
+    border-radius: 30px;
+    background: #ffffff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+    border: 3px solid #1d4ed8;
+}
+
+/* Title */
+.title {
+    color: #0f172a;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Counter Display */
+.display-box {
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 55px;
+    font-weight: bold;
+    padding: 18px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    border: 2px solid #1d4ed8;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+button {
+    border: none;
+    width: 65px;
+    height: 45px;
+    border-radius: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+
+.dec {
+    background: #111827;
+    color: white;
+}
+
+.inc {
+    background: #1d4ed8;
+    color: white;
+}
+
+.reset {
+    background: #2563eb;
+    color: white;
+    width: 90px;
+    font-size: 14px;
+}
+
+/* Slider */
+.slider-box {
+    margin: 15px 0;
+}
+
+input[type=range] {
+    width: 100%;
+    accent-color: #1d4ed8;
+    cursor: pointer;
+}
+
+/* Saved */
+.saved {
+    margin-top: 12px;
+    color: #334155;
+    font-size: 14px;
+}
+
+.saved span {
+    color: #1d4ed8;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="title">Counter</div>
+
+    <div class="display-box" id="display">0</div>
+
+    <div class="buttons">
+        <button class="dec" onclick="decrease()">−</button>
+        <button class="inc" onclick="increase()">+</button>
+        <button class="reset" onclick="resetCount()">Reset</button>
+    </div>
+
+    <div class="slider-box">
+        <input type="range" min="0" max="100" id="slider" oninput="syncSlider(this.value)">
+    </div>
+
+    <div class="saved">
+        Auto Saved: <span id="savedValue">0</span>
+    </div>
+</div>
+
+<script>
+let count = localStorage.getItem("counterValue");
+count = count ? Number(count) : 0;
+
+function updateUI() {
+    document.getElementById("display").innerText = count;
+    document.getElementById("slider").value = count;
+    localStorage.setItem("counterValue", count);
+    document.getElementById("savedValue").innerText = localStorage.getItem("counterValue");
+}
+
+function increase() {
+    count++;
+    updateUI();
+}
+
+function decrease() {
+    count--;
+    updateUI();
+}
+
+function resetCount() {
+    count = 0;
+    updateUI();
+}
+
+function syncSlider(value) {
+    count = Number(value);
+    updateUI();
+}
+
+updateUI();
+</script>
+
+</body>
+</html>

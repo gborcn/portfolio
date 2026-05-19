@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bio - John Kristoff C. Lagos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-image: url('3d.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .header {
+            text-align: center;
+            background-color: rgb(208, 234, 103);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(167, 250, 104, 0.5);
+        }
+
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 1.2em;
+            text-shadow: 1px 1px 2px rgba(208, 233, 95, 0.942);
+        }
+
+        .section {
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(226, 218, 218, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .section h2 {
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .info-item {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: rgba(243, 209, 168, 0.976);
+            border-radius: 5px;
+            border-left: 4px solid #8a4af0;
+        }
+
+        .info-item strong {
+            color: #333;
+            display: inline-block;
+            min-width: 120px;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .skill {
+            background-color: rgba(232, 245, 232, 0.9);
+            color: #2e7d32;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            border: 1px solid #4CAF50;
+        }
+
+        .hobbies-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .hobby-item {
+            background-color: rgba(255, 243, 224, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ff9800;
+            text-align: center;
+        }
+
+        .hobby-item h3 {
+            color: #e65100;
+            margin-bottom: 8px;
+        }
+
+        .hobby-item p {
+            color: #333;
+            margin: 0;
+        }
+
+        .contact-info {
+            border-radius: 8px;
+            border: 1px solid #f3eb7120;
+        }
+
+        .contact-info h3 {
+            background-color: rgb(143, 185, 104);
+            padding: 10px;
+            color: #0d47a1;
+            margin-bottom: 15px;
+        }
+
+        .contact-item {
+            background-color: rgb(247, 241, 241);
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .contact-item i {
+            width: 20px;
+            margin-right: 10px;
+            color: #edf1f4;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .hobbies-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>My Personal Life</h1>
+        <p>:InformationTechnology Student:</p>
+        <p>My journey in technology started with curiosity, and I'm excited to learn about coding and making design also. I love learning new programming languages and exploring different aspects of tech.</p>
+    </div>
+
+    <div class="section">
+        <h2>Personal Information</h2>
+        <div class="info-item">
+            <strong>Name:</strong> John Kristoff C. Lagos
+        </div>
+        <div class="info-item">
+            <strong>Age:</strong> 18 years old
+        </div>
+        <div class="info-item">
+            <strong>Birthday:</strong> May 30, 2007
+        </div>
+        <div class="info-item">
+            <strong>Location:</strong> Koronadal City, South Cotabato
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Education</h2>
+        <div class="info-item">
+            <strong>School Name:</strong> Ramon Magsaysay Memorial Colleges Marbel, Inc.
+        </div>
+        <div class="info-item">
+            <strong>Course:</strong> Bachelor of Science in Information Technology (BSIT)
+        </div>
+        <div class="info-item">
+            <strong>Year Level:</strong> 1st Year College
+        </div>
+        <div class="info-item">
+            <strong>Academic Year:</strong> 2025-2026
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Skills</h2>
+        <div class="skills-list">
+            <span class="skill">HTML</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">Python</span>
+            <span class="skill">MySQL</span>
+            <span class="skill">VS Code</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Hobbies & Interests</h2>
+        <div class="hobbies-list">
+            <div class="hobby-item">
+                <h3>📖 Reading</h3>
+                <p>I enjoy reading mangga such us anime like solo leveling and one punchman.</p>
+            </div>
+            <div class="hobby-item">
+                <h3>🚴‍♂️ Traveling</h3>
+                <p>I travel different places with my bicycle, I travel in bangga,tangtangan and also gensan.</p>
+            </div>
+            <div class="hobby-item">
+                <h3>💻 Coding</h3>
+                <p>Im not good at coding but i willing to learn and master it.</p>
+            </div>
+            <div class="hobby-item">
+                <h3>🎮 Gaming</h3>
+                <p>Playing online games like Call of Duty and Ark Survival.</p>
+            </div>
+            <div class="hobby-item">
+                <h3>🎵 Music</h3>
+                <p>Listening to various genres of music for relaxation and motivation.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>About My Life</h2>
+        <div class="info-item">
+            <strong>Current Status:</strong> 1st Year College Student pursuing Information Technology
+        </div>
+        <div class="info-item">
+            <strong>Goals:</strong> To become a skilled programmer and web developer
+        </div>
+        <div class="info-item">
+            <strong>Interests:</strong> Technology, programming, problem-solving, and creative projects
+        </div>
+        <div class="info-item">
+            <strong>Favorite Song:</strong> "Blinding Lights" by The Weeknd
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="contact-info">
+            <h3>Contact Information</h3>
+            <div class="contact-item">
+                <i>📧</i>
+                <span>johnlagos321123@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <i>📱</i>
+                <span>+63 9353630060</span>
+            </div>
+            <div class="contact-item">
+                <i>🏠</i>
+                <span>Prk Kalikasan, Brgy,Paraiso, Koronadal City, South Cotabato, 9506</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Biodata – Old Money Dollar Theme</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+
+<style>
+:root {
+    --bg-panel: rgba(28, 26, 24, 0.92);
+    --gold-soft: #c6a75e;
+    --gold-light: #e7d8a2;
+    --text-main: #f4f1ec;
+    --text-muted: #cfc6b8;
+
+    /* old money green */
+    --money-green: rgba(58, 125, 87, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--text-main);
+
+    /* PHOTO BACKGROUND + DARK OVERLAY */
+    background:
+        linear-gradient(180deg, rgba(0,0,0,0.65), rgba(0,0,0,0.85)),
+        url("BGNIMARA.png");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    overflow-x: hidden;
+}
+
+/* STATIC FALLING DOLLAR SYMBOLS */
+body::before {
+    content: "$   $     $    $      $   $     $     $";
+    position: fixed;
+    top: -25%;
+    left: -15%;
+    width: 130%;
+    height: 150%;
+
+    font-size: 52px;
+    font-family: "Times New Roman", serif;
+    letter-spacing: 90px;
+    line-height: 130px;
+
+    color: var(--money-green);
+    transform: rotate(18deg);
+    pointer-events: none;
+    white-space: pre-wrap;
+}
+
+/* Layout */
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 60px 20px;
+}
+
+/* Profile Section */
+.photo-box {
+    width: 520px;
+    margin: auto;
+    padding: 26px 30px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    background: var(--bg-panel);
+    border-radius: 18px;
+    border: 1px solid rgba(198,167,94,0.4);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.6),
+        inset 0 0 0 1px rgba(255,255,255,0.03);
+}
+
+.photo-wrapper {
+    width: 140px;
+    height: 140px;
+}
+
+.photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 2px solid var(--gold-soft);
+}
+
+.photo-info h1 {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    letter-spacing: 1px;
+    color: var(--gold-light);
+}
+
+.photo-info p {
+    margin-top: 6px;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* Grid */
+.grid {
+    margin-top: 70px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+}
+
+/* Info Boxes */
+.box {
+    background: linear-gradient(
+        160deg,
+        rgba(40,38,35,0.92),
+        rgba(24,22,20,0.96)
+    );
+
+    padding: 26px;
+    border-radius: 18px;
+    color: var(--text-muted);
+
+    border: 1px solid rgba(198,167,94,0.25);
+
+    box-shadow: 0 16px 30px rgba(0,0,0,0.55);
+}
+
+.box h2 {
+    margin-top: 0;
+    margin-bottom: 14px;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--gold-soft);
+}
+
+.box p {
+    margin: 6px 0;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .photo-box {
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+<!-- EXIT BUTTON -->
+    <a href="../../index.html" class="exit-btn">✖ Exit</a>
+<div class="container">
+
+    <div class="photo-box">
+        <div class="photo-wrapper">
+            <img src="mara.jpg" alt="Profile Photo">
+        </div>
+        <div class="photo-info">
+            <h1>Mara Mondejar</h1>
+        </div>
+    </div>
+
+    <div class="grid">
+
+        <div class="box">
+            <h2>Personal Information</h2>
+            <p><strong>Birthdate:</strong> January 25, 2006</p>
+            <p><strong>Gender:</strong> Female</p>
+            <p><strong>Email:</strong> maramondejar@gmail.com</p>
+        </div>
+
+        <div class="box">
+            <h2>Career Objective</h2>
+            <p>To become a professional IT specialist and continuously refine my technical expertise.</p>
+        </div>
+
+        <div class="box">
+            <h2>Hobbies</h2>
+            <p>• Photography</p>
+            <p>• Singing</p>
+            
+        </div>
+
+        <div class="box">
+            <h2>Skills</h2>
+            <p>• BASIC & SIMPLE Java Codes</p>
+            <p>• Logical Thinking</p>
+        </div>
+
+        <div class="box">
+            <h2>Education</h2>
+            <p><strong>Elementary:</strong> Osita Elementary School</p>
+            <p><strong>High School:</strong>Notre Dame Of Surala Inc.</p>
+            <p><strong>College:</strong> Ramon Magsaysay Memorial College-Marbel, Inc.</p>
+        </div>
+
+        <div class="box">
+            <h2>Goal</h2>
+            <p>To grow with discipline, elegance, and mastery in the field of IT.</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

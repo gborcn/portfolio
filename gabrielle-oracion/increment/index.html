@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <h3>Portfolio</h3>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section id="home" class="hero">
+  <div class="home-content">
+    <h4>Web Development Final Requirement</h4>
+    <h1>Portfolio Website Project</h1>
+    <p class="sub">Bachelor of Information Technology Students</p>
+    <p class="desc">
+      This website is developed as a final project in Web Development.
+      It demonstrates our skills in HTML, CSS, and JavaScript,
+      including responsive design, UI layout, and interactive elements.
+    </p>
+    <p class="school">Submitted to: Web Development Instructor</p>
+  </div>
+</section>
+
+<section id="about">
+  <div id="aboutTitle">
+    <h2>About</h2>
+    <p>Meet the team behind this portfolio</p>
+  </div>
+
+  <!-- Team Grid -->
+  <div id="aboutGrid" class="team-grid">
+    <div class="team-card" onclick="openAboutProfile(0)">
+      <img src="images/BLAAN.jpg" alt="Gabrielle">
+      <h3>Gabrielle Oracion</h3>
+      <p>Web Developer</p>
+    </div>
+    <div class="team-card" onclick="openAboutProfile(1)">
+      <img src="https://i.pravatar.cc/150?img=2" alt="Xander">
+      <h3>Xander Quibete</h3>
+      <p>UI Designer</p>
+    </div>
+    <div class="team-card" onclick="openAboutProfile(2)">
+      <img src="images/tabago.jpg" alt="Roevianne">
+      <h3>Roevianne Dominic E. Tabago</h3>
+      <p>Frontend Dev</p>
+    </div>
+    <div class="team-card" onclick="openAboutProfile(3)">
+      <img src="https://i.pravatar.cc/150?img=4" alt="Joros">
+      <h3>Joros Ariola</h3>
+      <p>Backend Dev</p>
+    </div>
+    <div class="team-card" onclick="openAboutProfile(4)">
+      <img src="images/lagos.jpg" alt="John">
+      <h3>John Kristof Lagos</h3>
+      <p>Database Admin</p>
+    </div>
+    <div class="team-card" onclick="openAboutProfile(5)">
+      <img src="https://i.pravatar.cc/150?img=6" alt="Chris">
+      <h3>Chris Brown</h3>
+      <p>Project Manager</p>
+    </div>
+  </div>
+
+  <!-- Profile Detail View -->
+  <div id="aboutDetail" style="display:none; width:100%; max-width:700px;">
+    <button class="btn" onclick="closeAboutProfile()" style="margin-bottom:20px;">← Back to Team</button>
+    <div class="profile-detail-card">
+      <div class="profile-header">
+        <img id="pd-img" src="" alt="">
+        <div>
+          <h2 id="pd-name"></h2>
+          <p id="pd-role" style="color:cyan;"></p>
+          <p id="pd-bio" style="opacity:0.7; margin-top:8px; font-size:14px;"></p>
+        </div>
+      </div>
+
+      <div class="pd-section">
+        <h4>Skills</h4>
+        <div id="pd-skills" class="skills" style="justify-content:flex-start;"></div>
+      </div>
+
+      <div class="pd-section">
+        <h4>Experience</h4>
+        <div id="pd-experience"></div>
+      </div>
+
+      <div class="pd-section">
+        <h4>Education</h4>
+        <div id="pd-education"></div>
+      </div>
+
+      <div class="pd-section">
+        <h4>Contact</h4>
+        <div id="pd-contact"></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+
+  <div id="profiles" class="grid">
+    <div class="card" onclick="openProfile(0)">
+      <img src="images/BLAAN.jpg" alt="gabrielleoracion">
+      <p>Gabrielle Oracion</p>
+    </div>
+    <div class="card" onclick="openProfile(1)">
+      <img src="https://i.pravatar.cc/150?img=2" alt="Xander Quibete">
+      <p>Xander Quibete</p>
+    </div>
+    <div class="card" onclick="openProfile(2)">
+      <img src="images/tabago.jpg" alt="Roevianne Tabago">
+      <p>Roevianne Dominic E. Tabago</p>
+    </div>
+    <div class="card" onclick="openProfile(3)">
+      <img src="https://i.pravatar.cc/150?img=4" alt="Joros Ariola">
+      <p>Joros Ariola</p>
+    </div>
+    <div class="card" onclick="openProfile(4)">
+      <img src="images/lagos.jpg" alt="John Lagos">
+      <p>John Kristof Lagos</p>
+    </div>
+    <div class="card" onclick="openProfile(5)">
+      <img src="https://i.pravatar.cc/150?img=6" alt="Chris Brown">
+      <p>Chris Brown</p>
+    </div>
+  </div>
+
+  <div id="projectMenu" style="display:none;">
+    <div id="profileName"></div>
+    <div class="grid"></div>
+    <button onclick="backToProfiles()" class="btn" style="margin-top:20px;">← Back to Profiles</button>
+  </div>
+
+  <div id="projectView" style="display:none;">
+    <button onclick="backToMenu()" class="btn" style="margin-bottom:20px;">← Back</button>
+    <div id="outputBox"></div>
+  </div>
+
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>© 2026 Portfolio</p>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

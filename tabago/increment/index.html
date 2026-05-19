@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>INCREMENT</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #1e1e2f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+.container {
+    text-align: center;
+    background: #2a2a40;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    width: 300px;
+}
+
+.bubble {
+    background: #ffffff;
+    color: #333;
+    padding: 15px 25px;
+    border-radius: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: #ffffff transparent transparent transparent;
+}
+
+button {
+    margin: 8px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.inc   { background: #4CAF50; color: white; }
+.dec   { background: #f44336; color: white; }
+.reset { background: #ff9800; color: white; }
+
+input[type=range] {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.saved {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* EXIT BUTTON */
+.exit-btn {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 13px;
+    padding: 5px 18px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 25px;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    background: transparent;
+    transition: 0.3s;
+}
+
+.exit-btn:hover {
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.9);
+    border-color: rgba(255,255,255,0.5);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="bubble" id="display">0</div>
+
+    <button class="dec" onclick="decrease()">-</button>
+    <button class="inc" onclick="increase()">+</button>
+    <button class="reset" onclick="resetCount()">Reset</button>
+
+    <input type="range" min="0" max="100" id="slider" oninput="syncSlider(this.value)">
+
+    <div class="saved">
+        Saved Value: <span id="savedValue">0</span>
+    </div>
+
+    <!-- EXIT BUTTON -->
+    <a href="index.html" class="exit-btn">✖ Exit</a>
+
+</div>
+
+<script>
+let count = 0;
+
+function updateUI() {
+    document.getElementById("display").innerText = count;
+    document.getElementById("slider").value = Math.min(Math.max(count, 0), 100);
+    document.getElementById("savedValue").innerText = count;
+}
+
+function increase() {
+    count++;
+    updateUI();
+}
+
+function decrease() {
+    count--;
+    updateUI();
+}
+
+function resetCount() {
+    count = 0;
+    updateUI();
+}
+
+function syncSlider(value) {
+    count = Number(value);
+    updateUI();
+}
+
+updateUI();
+</script>
+
+</body>
+</html>

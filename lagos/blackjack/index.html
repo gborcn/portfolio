@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Blackjack</title>
+<style>
+body{
+ font-family:Arial;
+ text-align:center;
+ background:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1400&auto=format&fit=crop') center/cover no-repeat fixed;
+ color:white;
+ padding-top:50px;
+}
+button{
+ padding:10px 20px;
+ margin:10px;
+ font-size:16px;
+ border:none;
+ border-radius:8px;
+ cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<h1>You need to get to close to a number 21</h1>
+
+<h2 id="player"></h2>
+<h2 id="dealer"></h2>
+<h2 id="money">Money: ₱100</h2>
+<h1 id="result"></h1>
+
+<button onclick="hit()">Hit</button>
+<button onclick="stand()">Stand</button>
+<button onclick="startGame()">Restart</button>
+
+<script>
+function getCard(){
+ let c=Math.floor(Math.random()*13)+1
+ if(c>10) return 10
+ if(c==1) return 11
+ return c
+}
+
+let money=100
+let playerCards=[]
+let dealerCards=[]
+let gameOver=false
+
+function sum(cards){
+ let total=0
+ let aces=0
+
+ for(let c of cards){
+  total+=c
+  if(c==11) aces++
+ }
+
+ while(total>21 && aces>0){
+  total-=10
+  aces--
+ }
+
+ return total
+}
+
+function update(){
+ document.getElementById('player').innerHTML=
+ 'You: '+playerCards.join(' , ')+' = '+sum(playerCards)
+
+ document.getElementById('dealer').innerHTML=
+ 'Dealer: '+dealerCards[0]+' , ?'
+}
+
+function startGame(){
+ if(money<=0){
+  alert(' Wala ka nang pera')
+  return
+ }
+
+ gameOver=false
+ playerCards=[getCard(),getCard()]
+ dealerCards=[getCard(),getCard()]
+
+ document.getElementById('result').innerHTML=''
+ update()
+}
+
+function hit(){
+ if(gameOver) return
+
+ playerCards.push(getCard())
+ update()
+
+ if(sum(playerCards)>21){
+  money-=10
+  document.getElementById('result').innerHTML='💥 Bust! -₱10'
+  document.getElementById('money').innerHTML='Money: ₱'+money
+  gameOver=true
+ }
+}
+
+function stand(){
+ let player=sum(playerCards)
+
+ while(sum(dealerCards)<17){
+  dealerCards.push(getCard())
+ }
+
+ let dealer=sum(dealerCards)
+
+ document.getElementById('dealer').innerHTML=
+ 'Dealer: '+dealerCards.join(' , ')+' = '+dealer
+
+ let result=''
+
+ if(dealer>21 || player>dealer){
+  money+=10
+  result='Oyy Paldo! +₱10'
+ }
+ else if(dealer>player){
+  money-=10
+  result='Talo ka pre! -₱10'
+ }
+ else{
+  result='oyyy samee'
+ }
+
+ document.getElementById('result').innerHTML=result
+ document.getElementById('money').innerHTML='Money: ₱'+money
+ gameOver=true
+}
+
+startGame()
+</script>
+
+</body>
+</html>

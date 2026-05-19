@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Japan Paradise</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body,html{
+      height:100%;
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(135deg,#120000,#4b0000);
+      color:#fff;
+      overflow:hidden;
+    }
+
+    .container{
+      display:grid;
+      grid-template-columns:100px 1fr;
+      height:100vh;
+    }
+
+    /* SIDEBAR */
+
+    .sidebar{
+      background:#1a0000;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding:2rem 0;
+      gap:3rem;
+      box-shadow:2px 0 10px rgba(0,0,0,0.5);
+      z-index:10;
+    }
+
+    .logo{
+      width:55px;
+      height:55px;
+      background:white;
+      border-radius:50%;
+      box-shadow:0 0 15px #ff4d4d;
+      cursor:pointer;
+      transition:.3s;
+    }
+
+    .logo:hover{
+      transform:scale(1.1) rotate(10deg);
+    }
+
+    .sidebar ul{
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:2rem;
+    }
+
+    .sidebar ul li{
+      writing-mode:vertical-rl;
+      cursor:pointer;
+      font-size:.8rem;
+      color:#ffb3b3;
+      letter-spacing:.2em;
+      transition:.3s;
+    }
+
+    .sidebar ul li:hover{
+      color:#ff4d4d;
+      transform:translateY(-5px);
+    }
+
+    .exit-btn{
+      margin-top:auto;
+      color:#ffb3b3;
+      text-decoration:none;
+      writing-mode:vertical-rl;
+      padding-bottom:1rem;
+      transition:.3s;
+    }
+
+    .exit-btn:hover{
+      color:#ff4d4d;
+    }
+
+    /* MAIN */
+
+    main{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      padding:3rem 6rem;
+      overflow:hidden;
+    }
+
+    /* Dynamic Background */
+    .bg-image{
+      position:absolute;
+      inset:0;
+      background-size:cover;
+      background-position:center;
+      filter:brightness(.55);
+      transition:1s ease;
+      z-index:0;
+    }
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg,rgba(0,0,0,.7),rgba(0,0,0,.2));
+      z-index:1;
+    }
+
+    .hero-text{
+      position:relative;
+      z-index:2;
+      max-width:600px;
+    }
+
+    .hero-text h1{
+      font-size:6rem;
+      color:#ff4d4d;
+      animation:fadeIn 1s ease;
+    }
+
+    .hero-text p{
+      margin-top:1rem;
+      color:#ffffffcc;
+      font-size:1.1rem;
+    }
+
+    .btn-explore{
+      margin-top:2rem;
+      background:#ff1a1a;
+      border:none;
+      padding:.8rem 3rem;
+      border-radius:100px;
+      color:white;
+      cursor:pointer;
+      font-size:1rem;
+      transition:.3s;
+    }
+
+    .btn-explore:hover{
+      background:#ff4d4d;
+      transform:scale(1.05);
+    }
+
+    /* CARDS */
+
+    .cards{
+      display:flex;
+      gap:2rem;
+      margin-top:3rem;
+      flex-wrap:wrap;
+      position:relative;
+      z-index:2;
+    }
+
+    .card{
+      width:160px;
+      height:160px;
+      border-radius:50%;
+      overflow:hidden;
+      position:relative;
+      cursor:pointer;
+      transition:.4s;
+      border:3px solid transparent;
+    }
+
+    .card:hover{
+      transform:scale(1.08);
+      border:3px solid #ff4d4d;
+      box-shadow:0 0 20px #ff4d4d;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-size:cover;
+      background-position:center;
+      filter:brightness(.7);
+    }
+
+    .card-content{
+      position:absolute;
+      bottom:12px;
+      left:12px;
+      z-index:2;
+    }
+
+    .card-content h3{
+      font-size:1rem;
+    }
+
+    .card-content p{
+      font-size:.7rem;
+      color:#ffffffcc;
+    }
+
+    /* JAPAN IMAGES */
+
+    .tokyo::before{
+      background-image:url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=500&q=80');
+    }
+
+    .kyoto::before{
+      background-image:url('https://images.unsplash.com/photo-1492571350019-22de08371fd3?auto=format&fit=crop&w=500&q=80');
+    }
+
+    .osaka::before{
+      background-image:url('https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=500&q=80');
+    }
+
+    .fuji::before{
+      background-image:url('https://images.unsplash.com/photo-1570459027562-4a916cc6113f?auto=format&fit=crop&w=500&q=80');
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* MOBILE */
+
+    @media(max-width:768px){
+
+      .container{
+        grid-template-columns:70px 1fr;
+      }
+
+      main{
+        padding:2rem;
+      }
+
+      .hero-text h1{
+        font-size:3.5rem;
+      }
+
+      .cards{
+        justify-content:center;
+      }
+
+      .card{
+        width:120px;
+        height:120px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- SIDEBAR -->
+
+  <nav class="sidebar">
+
+    <div class="logo" onclick="showMessage()"></div>
+
+    <ul>
+      <li onclick="changePlace('Tokyo')">Tokyo</li>
+      <li onclick="changePlace('Kyoto')">Kyoto</li>
+      <li onclick="changePlace('Osaka')">Osaka</li>
+      <li onclick="changePlace('Fuji')">Fuji</li>
+    </ul>
+
+    <a href="index.html" class="exit-btn">✖ Exit</a>
+
+  </nav>
+
+  <!-- MAIN -->
+
+  <main>
+
+    <div class="bg-image" id="background"></div>
+    <div class="overlay"></div>
+
+    <div class="hero-text">
+      <h1 id="title">Japan</h1>
+      <p id="description">Land of Tradition & Technology</p>
+
+      <button class="btn-explore" onclick="exploreJapan()">
+        Explore
+      </button>
+    </div>
+
+    <!-- CARDS -->
+
+    <div class="cards">
+
+      <div class="card tokyo"
+        onclick="updateContent(
+        'Tokyo',
+        'Modern city filled with neon lights and anime culture.',
+        'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1470&q=80'
+        )">
+
+        <div class="card-content">
+          <h3>Tokyo</h3>
+          <p>Modern city & neon lights</p>
+        </div>
+
+      </div>
+
+      <div class="card kyoto"
+        onclick="updateContent(
+        'Kyoto',
+        'Historic temples, cherry blossoms, and peaceful culture.',
+        'https://images.unsplash.com/photo-1492571350019-22de08371fd3?auto=format&fit=crop&w=1470&q=80'
+        )">
+
+        <div class="card-content">
+          <h3>Kyoto</h3>
+          <p>Temples & cherry blossoms</p>
+        </div>
+
+      </div>
+
+      <div class="card osaka"
+        onclick="updateContent(
+        'Osaka',
+        'Amazing street food and vibrant nightlife.',
+        'https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=1470&q=80'
+        )">
+
+        <div class="card-content">
+          <h3>Osaka</h3>
+          <p>Street food & nightlife</p>
+        </div>
+
+      </div>
+
+      <div class="card fuji"
+        onclick="updateContent(
+        'Mt. Fuji',
+        'Japan’s iconic mountain with breathtaking scenery.',
+        'https://images.unsplash.com/photo-1570459027562-4a916cc6113f?auto=format&fit=crop&w=1470&q=80'
+        )">
+
+        <div class="card-content">
+          <h3>Mt. Fuji</h3>
+          <p>Iconic mountain scenery</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+<script>
+
+  // Default Background
+  const bg = document.getElementById("background");
+
+  bg.style.backgroundImage =
+    "url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1470&q=80')";
+
+  // Update Hero Content
+  function updateContent(title, desc, image){
+
+    document.getElementById("title").innerText = title;
+
+    document.getElementById("description").innerText = desc;
+
+    bg.style.backgroundImage = `url('${image}')`;
+  }
+
+  // Explore Button
+  function exploreJapan(){
+
+    alert("Welcome to Japan Paradise 🇯🇵");
+  }
+
+  // Sidebar Menu
+  function changePlace(place){
+
+    alert("Opening " + place);
+  }
+
+  // Logo Click
+  function showMessage(){
+
+    alert("Japan Paradise 🌸");
+  }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blackjack Game</title>
+  <link rel="stylesheet" href="design.css">
+</head>
+<body>
+
+  <h1>Blackjack</h1>
+
+  <div class="container">
+    <p id="message">Want to play a round?</p>
+
+   <!-- DEALER (TOP) -->
+<h3>Dealer</h3>
+<p>Cards: <span id="dealer-cards"></span></p>
+<p>Sum: <span id="dealer-sum"></span></p>
+
+<!-- PLAYER (BOTTOM) -->
+<h3>Kuya ROB</h3>
+<p>Cards: <span id="cards"></span></p>
+<p>Sum: <span id="sum"></span></p>
+
+<p id="dealer-log"></p>
+
+    <!-- BUTTONS -->
+    <button id="start-btn" onclick="startGame()">Start Game</button>
+    <button onclick="newCard()">Hit</button>
+    <button onclick="stand()">Stand</button>
+    <button onclick="playAgain()">Play Again</button>
+
+    <!-- SCORE -->
+    <p>Wins: <span id="wins">0</span></p>
+  </div>
+
+  <script src="functions.js"></script>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Blackjack – Play by Rounds</title>
+  <style>
+    :root {
+      --bg: #190019;
+      --dark: #2B124C;
+      --medium: #522858;
+      --light: #854F6C;
+      --accent: #DFB6B2;
+      --white: #FBE4D8;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    #game {
+      width: 90%;
+      max-width: 600px;
+      background: var(--dark);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0 0 16px 0;
+      color: var(--accent);
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    p {
+      margin: 8px 0;
+      font-size: 18px;
+    }
+
+    #dealer, #player {
+      margin: 12px 0;
+    }
+
+    #dealer-cards, #player-cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 8px;
+      gap: 6px;
+    }
+
+    .card {
+      width: 60px;
+      height: 88px;
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .card.red {
+      color: #c00;
+    }
+
+    .card.hidden {
+      background: var(--medium);
+      color: var(--medium);
+    }
+
+    .controls {
+      margin-top: 20px;
+    }
+
+    button {
+      margin: 0 6px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: var(--accent);
+      color: var(--dark);
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #f1c8c8;
+    }
+
+    button:disabled {
+      background: #888;
+      color: #444;
+      cursor: not-allowed;
+    }
+
+    #round-info {
+      margin-top: 8px;
+      font-size: 16px;
+      color: var(--accent);
+    }
+
+    #result {
+      margin-top: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      min-height: 20px;
+      color: var(--accent);
+    }
+
+    #message {
+      margin-top: 16px;
+      font-size: 18px;
+      font-weight: bold;
+      min-height: 28px;
+      color: var(--accent);
+    }
+
+    .exit-btn {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 14px;
+      padding: 6px 16px;
+      border: 1px solid var(--light);
+      border-radius: 8px;
+      color: var(--light);
+      text-decoration: none;
+      background: transparent;
+    }
+
+    .exit-btn:hover {
+      background: var(--medium);
+      color: var(--white);
+    }
+  </style>
+</head>
+<body>
+  <div id="game">
+    <h1>Blackjack</h1>
+
+    <div id="round-info">Round 0 | You: 0 – Dealer: 0</div>
+
+    <div id="dealer">
+      <p><strong>Dealer</strong> <span id="dealer-score"></span></p>
+      <div id="dealer-cards"></div>
+    </div>
+
+    <div id="player">
+      <p><strong>You</strong> <span id="player-score"></span></p>
+      <div id="player-cards"></div>
+    </div>
+
+    <div class="controls">
+      <button id="btn-hit" disabled>Hit</button>
+      <button id="btn-stand" disabled>Stand</button>
+      <button id="btn-start-round">Start Round</button>
+    </div>
+
+    <div id="result"></div>
+    <div id="message"></div>
+
+    <!-- EXIT BUTTON -->
+    <a href="../index.html" class="exit-btn">✖ Exit</a>
+  </div>
+
+  <script>
+    const btnHit    = document.getElementById("btn-hit");
+    const btnStand  = document.getElementById("btn-stand");
+    const btnStart  = document.getElementById("btn-start-round");
+    const msg       = document.getElementById("message");
+    const result    = document.getElementById("result");
+    const dscore    = document.getElementById("dealer-score");
+    const pscore    = document.getElementById("player-score");
+    const dcards    = document.getElementById("dealer-cards");
+    const pcards    = document.getElementById("player-cards");
+    const roundInfo = document.getElementById("round-info");
+
+    const suits  = ["♠", "♥", "♦", "♣"];
+    const values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
+
+    let deck = [];
+    let playerHand = [];
+    let dealerHand = [];
+    let gameActive = false;
+    let roundCount = 0;
+    let playerWins = 0;
+    let dealerWins = 0;
+
+    function createDeck() {
+      deck = [];
+      for (let s of suits) {
+        for (let v of values) {
+          deck.push({ suit: s, value: v });
+        }
+      }
+      shuffle(deck);
+    }
+
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    }
+
+    function drawCard() {
+      if (deck.length === 0) createDeck();
+      return deck.pop();
+    }
+
+    function handValue(hand) {
+      let total = 0;
+      let aces = 0;
+      for (let card of hand) {
+        if (card.value === "A") {
+          aces++;
+          total += 11;
+        } else if (["J", "Q", "K"].includes(card.value)) {
+          total += 10;
+        } else {
+          total += parseInt(card.value);
+        }
+      }
+      while (total > 21 && aces > 0) {
+        total -= 10;
+        aces--;
+      }
+      return total;
+    }
+
+    function renderCard(card, hidden = false) {
+      const elem = document.createElement("div");
+      elem.className = "card";
+      if (hidden) {
+        elem.classList.add("hidden");
+        elem.textContent = "?";
+        return elem;
+      }
+      if (card.suit === "♥" || card.suit === "♦") {
+        elem.classList.add("red");
+      }
+      // FIX: was using broken non-template-literal string concatenation
+      elem.textContent = `${card.value}${card.suit}`;
+      return elem;
+    }
+
+    // FIX: added `hideFirst` param to control when dealer's hole card is hidden
+    function updateUI(hideFirst = false) {
+      // Player
+      pcards.innerHTML = "";
+      for (let card of playerHand) {
+        pcards.appendChild(renderCard(card));
+      }
+      // FIX: template literal was broken (missing backticks)
+      pscore.textContent = `(${handValue(playerHand)})`;
+
+      // Dealer
+      dcards.innerHTML = "";
+      for (let i = 0; i < dealerHand.length; i++) {
+        // FIX: was `dealerHand.length > 2` which incorrectly hid card
+        // when dealer had 3+ cards. Now hides only during active play.
+        const hidden = hideFirst && i === 0;
+        dcards.appendChild(renderCard(dealerHand[i], hidden));
+      }
+
+      // Show only visible cards' value while hole card is hidden
+      if (hideFirst) {
+        const visibleValue = handValue(dealerHand.slice(1));
+        dscore.textContent = `(${visibleValue}+?)`;
+      } else {
+        dscore.textContent = `(${handValue(dealerHand)})`;
+      }
+    }
+
+    function endRound() {
+      gameActive = false;
+      btnHit.disabled = true;
+      btnStand.disabled = true;
+      // Reveal all dealer cards
+      updateUI(false);
+      roundInfo.textContent = `Round ${roundCount} | You: ${playerWins} – Dealer: ${dealerWins}`;
+    }
+
+    function startRound() {
+      if (gameActive) return;
+
+      createDeck();
+      playerHand = [];
+      dealerHand = [];
+      gameActive = true;
+      roundCount++;
+      msg.textContent = "";
+      result.textContent = "";
+
+      playerHand.push(drawCard(), drawCard());
+      dealerHand.push(drawCard(), drawCard());
+
+      // Show dealer's hole card as hidden during play
+      updateUI(true);
+
+      roundInfo.textContent = `Round ${roundCount} | You: ${playerWins} – Dealer: ${dealerWins}`;
+      btnStart.textContent = "Next Round";
+
+      // FIX: was enabling Hit/Stand AFTER the blackjack check, so they
+      // would get re-enabled even if the player already won with blackjack.
+      // Now we check first, then only enable if game is still active.
+      if (handValue(playerHand) === 21) {
+        msg.textContent = "Blackjack! You win.";
+        result.textContent = "Winner: You";
+        playerWins++;
+        endRound();
+        return; // stop here — do not enable Hit/Stand
+      }
+
+      btnHit.disabled = false;
+      btnStand.disabled = false;
+    }
+
+    function dealerTurn() {
+      // FIX: the while loop was checking `gameActive`, but Stand set
+      // gameActive = false BEFORE calling dealerTurn, so the loop never ran.
+      // Now the loop simply checks the dealer's score directly.
+      while (handValue(dealerHand) < 17) {
+        dealerHand.push(drawCard());
+      }
+
+      const pval = handValue(playerHand);
+      const dval = handValue(dealerHand);
+
+      if (pval > 21) {
+        msg.textContent = "You busted.";
+        result.textContent = "Winner: Dealer";
+        dealerWins++;
+      } else if (dval > 21) {
+        msg.textContent = "Dealer busted.";
+        result.textContent = "Winner: You";
+        playerWins++;
+      } else if (dval === pval) {
+        msg.textContent = "Push (tie).";
+        result.textContent = "Tie";
+      } else if (dval > pval) {
+        msg.textContent = "Dealer wins.";
+        result.textContent = "Winner: Dealer";
+        dealerWins++;
+      } else {
+        msg.textContent = "You win!";
+        result.textContent = "Winner: You";
+        playerWins++;
+      }
+
+      endRound();
+    }
+
+    btnHit.addEventListener("click", () => {
+      if (!gameActive) return;
+      playerHand.push(drawCard());
+      updateUI(true);
+
+      if (handValue(playerHand) > 21) {
+        msg.textContent = "You busted.";
+        result.textContent = "Winner: Dealer";
+        dealerWins++;
+        endRound();
+      }
+    });
+
+    btnStand.addEventListener("click", () => {
+      if (!gameActive) return;
+      // FIX: no longer sets gameActive = false here; dealerTurn handles it
+      btnHit.disabled = true;
+      btnStand.disabled = true;
+      dealerTurn();
+    });
+
+    btnStart.addEventListener("click", startRound);
+
+    // Initial state
+    pcards.innerHTML = "";
+    dcards.innerHTML = "";
+    pscore.textContent = "(0)";
+    dscore.textContent = "(0)";
+    btnHit.disabled = true;
+    btnStand.disabled = true;
+    msg.textContent = "Press 'Start Round' to begin.";
+    result.textContent = "";
+    roundInfo.textContent = "Round 0 | You: 0 – Dealer: 0";
+  </script>
+</body>
+</html>

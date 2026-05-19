@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLACKJACK</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at top, #0f3d2e, #06251b);
+    color: white;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table {
+    width: 700px;
+    max-width: 95%;
+    background: #0b6623;
+    border: 10px solid #5c3b1e;
+    border-radius: 50% 50% 20% 20%;
+    padding: 40px 20px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+h1 {
+    font-size: 42px;
+    margin-bottom: 25px;
+    color: #ffd700;
+    letter-spacing: 3px;
+}
+
+.section {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 15px;
+}
+
+h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.cards {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffd700;
+    margin: 8px 0;
+}
+
+.score {
+    font-size: 18px;
+    color: #d1d5db;
+}
+
+.buttons {
+    margin-top: 25px;
+}
+
+button {
+    padding: 12px 22px;
+    margin: 8px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+
+.hit {
+    background: #2563eb;
+    color: white;
+}
+
+.stand {
+    background: #111827;
+    color: white;
+}
+
+.restart {
+    background: #f59e0b;
+    color: white;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffd700;
+}
+</style>
+</head>
+
+<body>
+
+<div class="table">
+    <h1>BLACKJACK</h1>
+
+    <div class="section">
+        <h2>Dealer</h2>
+        <div class="cards" id="dealer"></div>
+        <div class="score">Score: <span id="dscore"></span></div>
+    </div>
+
+    <div class="section">
+        <h2>Player</h2>
+        <div class="cards" id="player"></div>
+        <div class="score">Score: <span id="pscore"></span></div>
+    </div>
+
+    <div class="buttons">
+        <button class="hit" onclick="hit()">Hit</button>
+        <button class="stand" onclick="stand()">Stand</button>
+        <button class="restart" onclick="restart()">Restart</button>
+    </div>
+
+    <div id="result"></div>
+</div>
+
+<script>
+let player = [];
+let dealer = [];
+
+function card() {
+    let cards = [2,3,4,5,6,7,8,9,10,10,10,10,11];
+    return cards[Math.floor(Math.random() * cards.length)];
+}
+
+function start() {
+    player = [card(), card()];
+    dealer = [card(), card()];
+    document.getElementById("result").innerText = "";
+    update();
+}
+
+function sum(arr) {
+    let total = arr.reduce((a,b) => a+b, 0);
+    let aces = arr.filter(c => c === 11).length;
+
+    while (total > 21 && aces > 0) {
+        total -= 10;
+        aces--;
+    }
+    return total;
+}
+
+function update() {
+    document.getElementById("player").innerText = player.join(" , ");
+    document.getElementById("dealer").innerText = dealer.join(" , ");
+    document.getElementById("pscore").innerText = sum(player);
+    document.getElementById("dscore").innerText = sum(dealer);
+}
+
+function hit() {
+    player.push(card());
+    update();
+
+    if (sum(player) > 21) {
+        document.getElementById("result").innerText = "BUST! Dealer Wins";
+    }
+}
+
+function stand() {
+    while (sum(dealer) < 17) {
+        dealer.push(card());
+    }
+
+    let p = sum(player);
+    let d = sum(dealer);
+
+    if (d > 21 || p > d) {
+        document.getElementById("result").innerText = "You Win!";
+    } else if (p < d) {
+        document.getElementById("result").innerText = "Dealer Wins";
+    } else {
+        document.getElementById("result").innerText = "Draw";
+    }
+
+    update();
+}
+
+function restart() {
+    start();
+}
+
+start();
+</script>
+
+</body>
+</html>

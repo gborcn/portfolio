@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Professional Biodata - Xander Quibete</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: url(https://cbx-prod.b-cdn.net/COLOURBOX30896675.jpg?width=800&height=800&quality=70);
+        color: rgb(255, 255, 255);
+        background-size: cover; 
+        background-repeat: no-repeat; 
+        background-position: center;
+        min-height: 100vh;
+    }
+
+    .overlay {
+        min-height: 100vh;
+        padding: 40px 0;
+        background: rgba(0,0,0,0.4);
+    }
+
+    .container {
+        width: 85%;
+        max-width: 1000px;
+        margin: auto;
+        text-align: center;
+    }
+
+    .profile-box {
+        width: 220px;
+        height: 220px;
+        margin: 20px auto;
+        border-radius: 20px;
+        border: 3px solid #22199c;
+        overflow: hidden;
+        box-shadow: 0 0 15px rgba(0, 8, 77, 0.5);
+        background: black;
+    }
+
+    .profile-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.4s ease;
+    }
+
+    .profile-box:hover img {
+        transform: scale(1.08);
+        filter: brightness(1.2);
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        margin-top: 40px;
+        text-align: left;
+    }
+
+    .box {
+        background: rgba(0,0,0,0.7);
+        padding: 25px;
+        border-radius: 15px;
+        border-left: 5px solid #2809da;
+        box-shadow: 0 0 12px rgba(0,255,255,0.3);
+    }
+
+    .box h2 {
+        color: #2a009e;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    .box p {
+        margin: 8px 0;
+    }
+
+    .box ul {
+        padding-left: 20px;
+        margin: 8px 0;
+    }
+
+    .box li {
+        margin: 4px 0;
+    }
+
+    .full {
+        grid-column: span 2;
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 14px;
+        color: #100799;
+        padding: 20px;
+        background: rgba(0,0,0,0.5);
+        border-radius: 10px;
+        margin: 40px auto 0;
+        max-width: 600px;
+    }
+
+    /* EXIT BUTTON */
+    .exit-btn {
+        display: inline-block;
+        margin-top: 20px;
+        font-size: 14px;
+        padding: 6px 20px;
+        border: 1px solid rgba(255,255,255,0.4);
+        border-radius: 100px;
+        color: rgba(255,255,255,0.6);
+        text-decoration: none;
+        background: transparent;
+        transition: 0.3s;
+    }
+
+    .exit-btn:hover {
+        background: rgba(255,255,255,0.1);
+        color: #fff;
+        border-color: #fff;
+    }
+
+    @media (max-width: 768px) {
+        .grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .full {
+            grid-column: span 1;
+        }
+        .container {
+            width: 95%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .profile-box {
+            width: 180px;
+            height: 180px;
+        }
+    }
+</style>
+</head>
+
+<body>
+<div class="overlay">
+    <div class="container">
+        <!-- Profile Image -->
+        <div class="profile-box">
+            <img src="quibete.jpg" alt="Xander Quibete">
+        </div>
+        
+        <!-- Content Grid -->
+        <div class="grid">
+            <!-- Personal Information -->
+            <div class="box">
+                <h2>Personal Information</h2>
+                <p><strong>Name:</strong> Xander Quibete</p>
+                <p><strong>Birthdate:</strong> May 16, 2007</p>
+                <p><strong>Gender:</strong> Male</p>
+                <p><strong>Email:</strong> xanderquibete@gmail.com</p>
+            </div>
+
+            <!-- Career Objective -->
+            <div class="box">
+                <h2>Career Objective</h2>
+                <p>To become a professional IT specialist by continuously improving my technical skills and expanding my knowledge in the IT field.</p>
+            </div>
+
+            <!-- Hobbies -->
+            <div class="box">
+                <h2>Hobbies</h2>
+                <ul>
+                    <li>Coding</li>
+                    <li>Gaming</li>
+                    <li>Listening to Music</li>
+                    <li>Basketball</li>
+                </ul>
+            </div>
+
+            <!-- Skills -->
+            <div class="box">
+                <h2>Skills</h2>
+                <ul>
+                    <li>HTML & CSS</li>
+                    <li>JavaScript</li>
+                    <li>Basic Troubleshooting</li>
+                    <li>Operating System Installation</li>
+                </ul>
+            </div>
+
+            <!-- Education -->
+            <div class="box full">
+                <h2>Education</h2>
+                <p><strong>Current:</strong> Student at RMMC-MI</p>
+                <p><strong>High School:</strong> Koronadal National Comprehensive High School Graduate (2024-2025)</p>
+                <p><strong>Elementary:</strong> Marbel 1 Central Elementary School Graduate (2018-2019)</p>
+            </div>
+
+            <!-- Experience -->
+            <div class="box">
+                <h2>Experience</h2>
+                <ul>
+                    <li>Technical Sales Associate at STEAM PC TECH (2024-2025)</li>
+                </ul>
+            </div>
+
+            <!-- Religion -->
+            <div class="box">
+                <h2>Religion</h2>
+                <ul>
+                    <li>Catholic</li>
+                </ul>
+            </div>
+
+            <!-- Nationality -->
+            <div class="box">
+                <h2>Nationality</h2>
+                <ul>
+                    <li>Filipino</li>
+                </ul>
+            </div>
+
+            <!-- Marital Status -->
+            <div class="box">
+                <h2>Marital Status</h2>
+                <ul>
+                    <li>Single</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>📧 Contact: xanderquibete@gmail.com | 📱 Available for IT opportunities</p>
+        </div>
+
+        <!-- EXIT BUTTON -->
+        <a href="index.html" class="exit-btn">✖ Exit</a>
+
+    </div>
+</div>
+</body>
+</html>

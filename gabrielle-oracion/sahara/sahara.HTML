@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Japan – Cars & Anime</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body, html {
+      height:100%;
+      font-family:'Poppins', sans-serif;
+      background:linear-gradient(135deg,#000510,#001a3a);
+      color:#fff;
+      overflow:hidden;
+    }
+
+    .container {
+      display:grid;
+      grid-template-columns:100px 1fr;
+      height:100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      background:#000d1f;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding:2rem 0;
+      gap:3rem;
+      box-shadow:2px 0 10px rgba(0,0,0,0.5);
+      z-index:10;
+    }
+
+    /* LOGO — now shows your image */
+    .logo {
+      width:55px;
+      height:55px;
+      border-radius:50%;
+      overflow:hidden;
+      box-shadow:0 0 15px #00aaff;
+      cursor:pointer;
+      transition:.3s;
+      flex-shrink:0;
+      border:2px solid rgba(0,170,255,0.4);
+    }
+
+    .logo:hover { transform:scale(1.1) rotate(10deg); box-shadow:0 0 25px #00aaff; }
+
+    .logo img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .sidebar ul {
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:2rem;
+    }
+
+    .sidebar ul li {
+      writing-mode:vertical-rl;
+      cursor:pointer;
+      font-size:.8rem;
+      color:#99ddff;
+      letter-spacing:.2em;
+      transition:.3s;
+      user-select:none;
+    }
+
+    .sidebar ul li:hover,
+    .sidebar ul li.active {
+      color:#00aaff;
+      transform:translateY(-5px);
+    }
+
+    .sidebar ul li.active {
+      text-shadow:0 0 8px #00aaff;
+    }
+
+    .exit-btn {
+      margin-top:auto;
+      color:#99ddff;
+      text-decoration:none;
+      writing-mode:vertical-rl;
+      padding-bottom:1rem;
+      transition:.3s;
+      font-size:.8rem;
+      letter-spacing:.1em;
+    }
+
+    .exit-btn:hover { color:#00aaff; }
+
+    /* MAIN */
+    main {
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      padding:3rem 6rem;
+      overflow:hidden;
+    }
+
+    .bg-image {
+      position:absolute;
+      inset:0;
+      background-size:cover;
+      background-position:center;
+      filter:brightness(.5);
+      transition:1s ease;
+      z-index:0;
+    }
+
+    .overlay {
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg,rgba(0,0,0,.8),rgba(0,0,0,.2));
+      z-index:1;
+    }
+
+    .hero-text {
+      position:relative;
+      z-index:2;
+      max-width:600px;
+    }
+
+    .hero-text h1 {
+      font-size:5rem;
+      color:#00aaff;
+      text-shadow:0 0 30px #00aaff88;
+      animation:fadeIn .6s ease;
+    }
+
+    .hero-text p {
+      margin-top:1rem;
+      color:#ffffffcc;
+      font-size:1.1rem;
+      line-height:1.7;
+      animation:fadeIn .6s ease .1s both;
+    }
+
+    .btn-explore {
+      margin-top:2rem;
+      background:#0055ff;
+      border:none;
+      padding:.8rem 3rem;
+      border-radius:100px;
+      color:white;
+      cursor:pointer;
+      font-size:1rem;
+      transition:.3s;
+      box-shadow:0 0 20px #0055ff88;
+      animation:fadeIn .6s ease .2s both;
+    }
+
+    .btn-explore:hover {
+      background:#00aaff;
+      transform:scale(1.05);
+      box-shadow:0 0 30px #00aaffaa;
+    }
+
+    /* CARDS */
+    .cards {
+      display:flex;
+      gap:2rem;
+      margin-top:3rem;
+      flex-wrap:wrap;
+      position:relative;
+      z-index:2;
+    }
+
+    .card {
+      width:160px;
+      height:160px;
+      border-radius:50%;
+      overflow:hidden;
+      position:relative;
+      cursor:pointer;
+      transition:.4s;
+      border:3px solid transparent;
+    }
+
+    .card:hover {
+      transform:scale(1.08);
+      border:3px solid #00aaff;
+      box-shadow:0 0 25px #00aaff;
+    }
+
+    .card.active {
+      border:3px solid #00aaff;
+      box-shadow:0 0 20px #00aaff88;
+    }
+
+    .card::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background-size:cover;
+      background-position:center;
+      filter:brightness(.7);
+      transition:.4s;
+    }
+
+    .card:hover::before { filter:brightness(.9); }
+
+    .card-content {
+      position:absolute;
+      bottom:12px;
+      left:12px;
+      z-index:2;
+    }
+
+    .card-content h3 { font-size:1rem; }
+    .card-content p { font-size:.7rem; color:#ffffffcc; }
+
+    /* CARD IMAGES */
+    .jdm::before {
+      background-image:url('https://images.unsplash.com/photo-1611821064430-0d40291d0f0b?w=500&q=80&fit=crop');
+    }
+    .akiba::before {
+      background-image:url('https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500&q=80&fit=crop');
+    }
+    .drift::before {
+      background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80&fit=crop');
+    }
+    .anime::before {
+      background-image:url('https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500&q=80&fit=crop');
+    }
+
+    @keyframes fadeIn {
+      from { opacity:0; transform:translateY(20px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    @media(max-width:768px) {
+      .container { grid-template-columns:70px 1fr; }
+      main { padding:2rem; }
+      .hero-text h1 { font-size:3rem; }
+      .cards { justify-content:center; }
+      .card { width:120px; height:120px; }
+      .logo { width:44px; height:44px; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+
+    <!-- ✅ LOGO — replace "images/your-logo.jpg" with your actual image path -->
+    <div class="logo" onclick="showMessage()" title="Japan — Cars & Anime">
+      <img
+        src="images/BLAAN.jpg"
+        alt="Logo"
+        onerror="this.parentElement.style.background='#00aaff33';this.style.display='none';"
+      />
+    </div>
+
+    <ul id="navList">
+      <li onclick="changeSection('JDM')"       data-key="JDM">JDM</li>
+      <li onclick="changeSection('Akihabara')" data-key="Akihabara">Akiba</li>
+      <li onclick="changeSection('Drift')"     data-key="Drift">Drift</li>
+      <li onclick="changeSection('Anime')"     data-key="Anime">Anime</li>
+    </ul>
+
+    <a href="../../index.html" class="exit-btn">✖ Exit</a>
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+    <div class="bg-image" id="background"></div>
+    <div class="overlay"></div>
+
+    <div class="hero-text">
+      <h1 id="title">Japan</h1>
+      <p id="description">Where Speed Meets Anime Culture</p>
+      <button class="btn-explore" onclick="exploreJapan()">Explore</button>
+    </div>
+
+    <div class="cards">
+
+      <div class="card jdm" onclick="cardClick(this,'JDM')">
+        <div class="card-content">
+          <h3>JDM</h3>
+          <p>Legendary car culture</p>
+        </div>
+      </div>
+
+      <div class="card akiba" onclick="cardClick(this,'Akihabara')">
+        <div class="card-content">
+          <h3>Akihabara</h3>
+          <p>Anime & gaming hub</p>
+        </div>
+      </div>
+
+      <div class="card drift" onclick="cardClick(this,'Drift')">
+        <div class="card-content">
+          <h3>Drift</h3>
+          <p>Touge & circuit racing</p>
+        </div>
+      </div>
+
+      <div class="card anime" onclick="cardClick(this,'Anime')">
+        <div class="card-content">
+          <h3>Anime</h3>
+          <p>Global pop culture</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  const bg = document.getElementById('background');
+
+  const data = {
+    JDM: {
+      title: 'JDM Cars',
+      desc:  'Japan Domestic Market — legendary cars like the Supra, Skyline GT-R, and RX-7 born from Japanese engineering.',
+      img:   'https://images.unsplash.com/photo-1611821064430-0d40291d0f0b?w=1470&q=80&fit=crop'
+    },
+    Akihabara: {
+      title: 'Akihabara',
+      desc:  "Tokyo's electric town — the world capital of anime, manga, and gaming culture.",
+      img:   'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=1470&q=80&fit=crop'
+    },
+    Drift: {
+      title: 'Drift Culture',
+      desc:  'Touge mountain passes and drift circuits — the birthplace of drifting as an art form.',
+      img:   'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1470&q=80&fit=crop'
+    },
+    Anime: {
+      title: 'Anime World',
+      desc:  "From Naruto to Initial D — Japan's anime industry influences global pop culture and car enthusiasm.",
+      img:   'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=1470&q=80&fit=crop'
+    }
+  };
+
+  // Set default background
+  bg.style.backgroundImage =
+    "url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1470&q=80&fit=crop')";
+
+  function updateContent(key) {
+    const d = data[key];
+    document.getElementById('title').innerText       = d.title;
+    document.getElementById('description').innerText = d.desc;
+    bg.style.backgroundImage = `url('${d.img}')`;
+
+    // Highlight active nav item
+    document.querySelectorAll('#navList li').forEach(li => {
+      li.classList.toggle('active', li.dataset.key === key);
+    });
+  }
+
+  function cardClick(cardEl, key) {
+    // Highlight active card
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+    cardEl.classList.add('active');
+    updateContent(key);
+  }
+
+  function changeSection(key) {
+    updateContent(key);
+    // Also highlight matching card
+    document.querySelectorAll('.card').forEach(c => {
+      c.classList.toggle('active', c.classList.contains(key.toLowerCase()));
+    });
+  }
+
+  function exploreJapan() {
+    alert('Welcome to Japan — Cars & Anime Edition 🚗🎌');
+  }
+
+  function showMessage() {
+    alert('Japan — Cars & Anime Edition 🚗🎌');
+  }
+</script>
+</body>
+</html>

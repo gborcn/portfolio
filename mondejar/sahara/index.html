@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thailand Paradise</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #301503, #7a4a11);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      height: 100vh;
+    }
+
+    nav.sidebar {
+      background: #401f02;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 0;
+      gap: 3rem;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+    }
+
+    nav.sidebar .logo {
+      width: 50px;
+      height: 50px;
+      background: #fff3e0;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      box-shadow: 0 0 6px #ffb74d;
+      transition: 0.3s;
+    }
+
+    nav.sidebar .logo:hover {
+      transform: rotate(10deg);
+    }
+
+    nav.sidebar ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    nav.sidebar ul li {
+      cursor: pointer;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #f7d794;
+      writing-mode: vertical-rl;
+      transition: 0.3s;
+    }
+
+    nav.sidebar ul li:hover {
+      color: #ffd54f;
+    }
+
+    /* EXIT BUTTON */
+    .exit-btn {
+      margin-top: auto;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #f7d794;
+      text-decoration: none;
+      writing-mode: vertical-rl;
+      transition: 0.3s;
+      padding-bottom: 1rem;
+    }
+
+    .exit-btn:hover {
+      color: #ffd54f;
+    }
+
+    main {
+      padding: 3rem 6rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      border-radius: 0 30px 30px 0;
+      overflow: hidden;
+    }
+
+    main::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+      filter: brightness(0.7);
+      z-index: 0;
+    }
+
+    main::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(10,5,2,0.7), rgba(10,5,2,0));
+      z-index: 1;
+    }
+
+    .hero-text {
+      max-width: 600px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .hero-text h1 {
+      font-size: 6rem;
+      color: #ffca28;
+    }
+
+    .hero-text p {
+      margin-top: 1rem;
+      color: #fff8e1cc;
+    }
+
+    .btn-explore {
+      margin-top: 2rem;
+      background: #ffb300;
+      padding: 0.7rem 3rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #1a0a00;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn-explore:hover {
+      background: #ffd54f;
+    }
+
+    .cards {
+      display: flex;
+      gap: 2rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.7);
+    }
+
+    .card-content {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      color: #fff;
+      z-index: 2;
+    }
+
+    .card-content h3 {
+      font-size: 0.85rem;
+    }
+
+    .card-content p {
+      font-size: 0.65rem;
+      color: #ffffffcc;
+    }
+
+    /* Thailand Images */
+    .phuket::before {
+      background-image: url('https://images.unsplash.com/photo-1589395937772-f6701e3c1e68?auto=format&fit=crop&w=320&q=80');
+    }
+
+    .bangkok::before {
+      background-image: url('https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=320&q=80');
+    }
+
+    .chiangmai::before {
+      background-image: url('https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&w=320&q=80');
+    }
+
+    .krabi::before {
+      background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=320&q=80');
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <nav class="sidebar">
+    <div class="logo"></div>
+    <ul>
+      <li>Come</li>
+      <li>Explore</li>
+      <li>With</li>
+      <li>Me</li>
+    </ul>
+
+    <!-- EXIT BUTTON -->
+    <a href="index.html" class="exit-btn">✖ Exit</a>
+  </nav>
+
+  <main>
+
+    <div class="hero-text">
+      <h1>Thailand</h1>
+      <p>My Dream Destination</p>
+      <button class="btn-explore">Explore</button>
+    </div>
+
+    <div class="cards">
+
+      <div class="card phuket">
+        <div class="card-content">
+          <h3>Phuket</h3>
+          <p>Beautiful beaches & nightlife</p>
+        </div>
+      </div>
+
+      <div class="card bangkok">
+        <div class="card-content">
+          <h3>Bangkok</h3>
+          <p>Capital with temples & food</p>
+        </div>
+      </div>
+
+      <div class="card chiangmai">
+        <div class="card-content">
+          <h3>Chiang Mai</h3>
+          <p>Mountains & culture</p>
+        </div>
+      </div>
+
+      <div class="card krabi">
+        <div class="card-content">
+          <h3>Krabi</h3>
+          <p>Clear waters & cliffs</p>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+</body>
+</html>

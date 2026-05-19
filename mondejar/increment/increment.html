@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Counter with Save</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #e3f2fd, #f4f4f4);
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      width: 320px;
+    }
+
+    h1 {
+      font-size: 56px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    button {
+      margin: 6px;
+      padding: 10px 16px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    .increment {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .save {
+      background-color: #2196F3;
+      color: white;
+    }
+
+    .reset {
+      background-color: #f44336;
+      color: white;
+    }
+
+    p {
+      margin-top: 15px;
+      font-size: 16px;
+      color: #333;
+      word-wrap: break-word;
+    }
+
+    .exit-btn {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 14px;
+      padding: 6px 16px;
+      border: 1px solid #aaa;
+      border-radius: 10px;
+      color: #888;
+      text-decoration: none;
+      background: transparent;
+      transition: 0.2s;
+    }
+
+    .exit-btn:hover {
+      background: #f0f0f0;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1 id="count">0</h1>
+
+    <button class="increment" id="incrementBtn">Increment</button>
+    <button class="save" id="saveBtn">Save</button>
+    <button class="reset" id="resetBtn">Reset</button>
+
+    <p id="saved">Saved: none</p>
+
+    <!-- EXIT BUTTON -->
+    <a href="../index.html" class="exit-btn">✖ Exit</a>
+  </div>
+
+  <script>
+    let count = 0;
+    let savedEntries = [];
+
+    const countDisplay = document.getElementById("count");
+    const savedDisplay = document.getElementById("saved");
+
+    document.getElementById("incrementBtn").addEventListener("click", () => {
+      count++;
+      updateDisplay();
+    });
+
+    document.getElementById("saveBtn").addEventListener("click", () => {
+      if (count === 0) return;
+
+      savedEntries.push(count);
+      savedDisplay.textContent = "Saved: " + savedEntries.join(" - ");
+
+      count = 0;
+      updateDisplay();
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      count = 0;
+      savedEntries = [];
+      savedDisplay.textContent = "Saved: none";
+      updateDisplay();
+    });
+
+    function updateDisplay() {
+      countDisplay.textContent = count;
+    }
+  </script>
+
+</body>
+</html>

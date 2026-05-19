@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT Portfolio · BSIT 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<script>
+  if (!sessionStorage.getItem('loggedIn')) window.location.href = 'login.html';
+</script>
+
+<!-- ── NAV ── -->
+<nav id="mainNav">
+  <div class="nav-logo">IT.portfolio</div>
+  <div class="nav-links">
+    <span id="welcomeChip" style="font-family:var(--font-mono);font-size:0.65rem;color:rgba(0,200,255,0.5);letter-spacing:1px;"></span>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <button id="logoutBtn" onclick="logout()">⏻ Logout</button>
+  </div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="glow-orb" style="width:500px;height:500px;background:var(--cyan);top:-100px;right:-100px;opacity:0.04;"></div>
+  <div class="glow-orb" style="width:400px;height:400px;background:var(--accent);bottom:-80px;left:-80px;opacity:0.04;animation-delay:4s;"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge gsap-reveal">
+    </div>
+    <h1 class="hero-title">
+      <span class="line1 gsap-reveal">Web</span>
+      <span class="line2 gsap-reveal">Development</span>
+      <span class="line3 gsap-reveal">Portfolio</span>
+    </h1>
+    <p class="hero-sub gsap-reveal">
+      A final requirement showcase for Bachelor of Science in Information Technology —
+      demonstrating HTML, CSS, JavaScript, responsive design, and modern UI craft.
+    </p>
+    <div class="hero-tags gsap-reveal">
+      <span class="hero-tag">HTML</span>
+      <span class="hero-tag">CSS</span>
+      <span class="hero-tag">JavaScript</span>
+      <span class="hero-tag">Responsive Design</span>
+      <span class="hero-tag">UI/UX</span>
+    </div>
+  </div>
+  <div class="hero-scroll">
+  </div>
+</section>
+
+<!-- ══════════════ ABOUT BENTO ══════════════ -->
+<section id="about">
+  <div class="glow-orb" style="width:600px;height:300px;background:var(--cyan);top:10%;left:-200px;opacity:0.025;"></div>
+  <div class="section-header gsap-reveal" style="max-width:1200px;margin:0 auto 60px;">
+    <div class="section-eyebrow">About the Team</div>
+    <h2 class="section-title">The People <span>Behind It</span></h2>
+  </div>
+
+  <div class="bento-grid">
+
+    <!-- Intro card -->
+    <div class="bento-card bc-intro gsap-reveal-scale">
+      <div class="bc-intro-glow"></div>
+      <div>
+        <div class="bc-intro-label">Who we are</div>
+        <h3 class="bc-intro-title">BSIT<br>Class of<br>2026</h3>
+        <p class="bc-intro-desc">Six IT students from Ramon Magsaysay Memorial College building their first full portfolio as a web development final requirement.</p>
+      </div>
+      <div class="bc-intro-badge">
+        <span style="width:5px;height:5px;border-radius:50%;background:var(--cyan2);box-shadow:0 0 8px var(--cyan2);"></span>
+        RMMCMI
+      </div>
+    </div>
+
+    <!-- Stats card -->
+    <div class="bento-card bc-stats gsap-reveal">
+      <div class="stat-bento">
+        <div class="stat-bento-num">
+          <div class="ring"></div><div class="ring2"></div>
+          <span data-target="6">0</span>
+        </div>
+        <div class="stat-bento-label">Members</div>
+      </div>
+      <div class="stat-bento">
+        <div class="stat-bento-num">
+          <div class="ring"></div><div class="ring2"></div>
+          <span data-target="4">0</span>
+        </div>
+        <div class="stat-bento-label">Projects Each</div>
+      </div>
+      <div class="stat-bento">
+        <div class="stat-bento-num">
+          <div class="ring"></div><div class="ring2"></div>
+          <span data-target="2026">0</span>
+        </div>
+        <div class="stat-bento-label">Batch Year</div>
+      </div>
+      <div class="stat-bento">
+        <div class="stat-bento-num">
+          <div class="ring"></div><div class="ring2"></div>
+          <span data-target="24">0</span>
+        </div>
+        <div class="stat-bento-label">Completed Work</div>
+      </div>
+    </div>
+
+    <!-- Team card -->
+    <div class="bento-card bc-team gsap-reveal">
+      <div class="bc-team-label">Team Members</div>
+      <div class="team-mini-grid" id="teamGrid">
+        <!-- filled by script.js -->
+      </div>
+    </div>
+
+   <div class="bento-card bc-tech gsap-reveal">
+  <div class="bc-tech-title">Tech Stack</div>
+  <div class="tech-pills">
+
+    <!-- HTML5 -->
+    <span class="tech-pill" style="border-color:rgba(228,77,38,0.3);background:rgba(228,77,38,0.06);">
+      <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+    </span>
+
+    <!-- CSS3 -->
+    <span class="tech-pill" style="border-color:rgba(38,77,228,0.3);background:rgba(38,77,228,0.06);">
+      <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+    </span>
+
+    <!-- JavaScript -->
+    <span class="tech-pill" style="border-color:rgba(247,223,30,0.3);background:rgba(247,223,30,0.06);">
+      <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+    </span>
+
+    <!-- Java -->
+    <span class="tech-pill" style="border-color:rgba(237,117,26,0.3);background:rgba(237,117,26,0.06);">
+      <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
+    </span>
+
+    <!-- Bootstrap -->
+    <span class="tech-pill" style="border-color:rgba(121,82,179,0.3);background:rgba(121,82,179,0.06);">
+      <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap">
+    </span>
+
+    <!-- GitHub -->
+    <span class="tech-pill" style="border-color:rgba(255,255,255,0.15);background:rgba(255,255,255,0.04);">
+      <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="filter:invert(1);">
+    </span>
+
+  </div>
+</div> 
+</section>
+
+<!-- ══════════════ PROJECTS ══════════════ -->
+<section id="projects">
+  <div class="glow-orb" style="width:500px;height:500px;background:var(--accent);top:20%;right:-200px;opacity:0.03;"></div>
+  <div class="section-header gsap-reveal" style="max-width:1200px;margin:0 auto 60px;">
+    <div class="section-eyebrow">Our Work</div>
+    <h2 class="section-title">Featured <span>Projects</span></h2>
+  </div>
+
+  <div class="projects-bento" style="max-width:1200px;margin:0 auto;">
+    <!-- Member selector -->
+    <div class="member-selector-card gsap-reveal-left" id="memberSelector">
+      <div class="member-selector-label">Select Member</div>
+      <!-- filled by script.js -->
+    </div>
+
+    <!-- Project display -->
+    <div class="proj-display" id="projDisplay">
+      <!-- filled by script.js -->
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<section id="contact">
+  <div class="section-header gsap-reveal" style="max-width:1200px;margin:0 auto 60px;">
+    <div class="section-eyebrow">Get In Touch</div>
+    <h2 class="section-title">Contact <span>Us</span></h2>
+  </div>
+
+  <div class="contact-bento">
+    <div class="bento-card bc-contact-info gsap-reveal">
+      <p class="contact-big-text">Let's start a conversation.</p>
+      <p style="font-size:0.85rem;color:var(--muted);margin-bottom:28px;line-height:1.8;">Have a question or want to collaborate? Reach out and we'll get back to you.</p>
+      <div class="contact-social-list">
+        <a href="mailto:gabrielleoracoin@gmail.com" class="contact-social-item">
+          <div class="contact-social-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          gabrielleoracoin@gmail.com
+        </a>
+        <a href="https://www.google.com/maps/search/Koronadal,+South+Cotabato" target="_blank" class="contact-social-item">
+          <div class="contact-social-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          Koronadal, South Cotabato, PH
+        </a>
+        <a href="https://rmmc-mi.edu.ph/" target="_blank" class="contact-social-item">
+          <div class="contact-social-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path d="M12 14l9-5-9-5-9 5 9 5z"/>
+              <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+            </svg>
+          </div>
+          Ramon Magsaysay Memorial College
+        </a>
+      </div>
+    </div>
+
+    <div class="bento-card bc-contact-form gsap-reveal">
+      <form class="contact-form" onsubmit="handleContact(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input id="contact-name" class="form-input" type="text" placeholder="Juan dela Cruz" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Your Email</label>
+            <input id="contact-email" class="form-input" type="email" placeholder="you@email.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Subject</label>
+          <input id="contact-subject" class="form-input" type="text" placeholder="What's this about?">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea id="contact-message" class="form-textarea" rows="5" placeholder="Write your message here..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="align-self:flex-start;cursor:none;">
+          <span id="send-label">Send Message</span>
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="contact-footer">
+    <p class="footer-text">© 2026 IT Portfolio · Ramon Magsaysay Memorial College Marbel Inc. · Web Development Final Requirement</p>
+    <div class="footer-logo">it.portfolio</div>
+  </div>
+</section>
+
+<!-- ── PROFILE OVERLAY ── -->
+<div id="profileOverlay">
+  <div class="profile-overlay-card" id="overlayCard">
+    <button class="overlay-close" onclick="closeOverlay()">×</button>
+    <div class="overlay-header">
+      <img class="overlay-avatar" id="ov-img" src="" alt="">
+      <div>
+        <div class="overlay-name" id="ov-name"></div>
+        <div class="overlay-role" id="ov-role"></div>
+      </div>
+    </div>
+    <div class="overlay-section">
+      <div class="overlay-section-title">Bio</div>
+      <p class="overlay-bio" id="ov-bio"></p>
+    </div>
+    <div class="overlay-section">
+      <div class="overlay-section-title">Skills</div>
+      <div class="overlay-skills" id="ov-skills"></div>
+    </div>
+    <div class="overlay-section">
+      <div class="overlay-section-title">Experience</div>
+      <div id="ov-exp"></div>
+    </div>
+    <div class="overlay-section">
+      <div class="overlay-section-title">Contact</div>
+      <div id="ov-contact"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Script loaded at the end so DOM is ready -->
+<script src="script.js"></script>
+
+</body>
+</html>

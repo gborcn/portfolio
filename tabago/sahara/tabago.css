@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: Modern;
+    background-image: url("image/minator.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    padding: 50px;
+    border-radius: 20px;
+    text-align: center;
+    border: 3px solid #FFD966; /* gold accent from hair highlights */
+    backdrop-filter: blur(8px);
+    background: rgba(27, 27, 58, 0.5); /* deep purple from background */
+    animation: royalGlow 3s infinite alternate;
+}
+
+h2 {
+    font-size: 55px;
+    color: #FFD966; /* matching magical glow */
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px #FFD966;
+}
+
+p {
+    font-size: 30px;
+    color: #F5E6C8; /* soft glow like petals and light */
+    margin: 10px 0;
+}
+
+span {
+    color: #FF3B3B; /* bow red accent */
+    font-weight: bold;
+    text-shadow: 0 0 10px #FF3B3B;
+}
+
+/* Optional animation */
+@keyframes royalGlow {
+    0% { box-shadow: 0 0 20px #FFD966; }
+    50% { box-shadow: 0 0 40px #FFD966; }
+    100% { box-shadow: 0 0 20px #FFD966; }
+}
